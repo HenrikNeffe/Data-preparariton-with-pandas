@@ -15,8 +15,11 @@ noduplicates= notnull.drop_duplicates(subset="id", keep=False)
 lessthan4moves=noduplicates.drop(noduplicates[noduplicates['turns'] < 4].index, inplace = False)
 #print(lessthan4moves)
 lessthan3openings=lessthan4moves[~lessthan4moves.opening_name.isin(to_remove)]
-print(lessthan3openings)
 #print(lessthan3openings)
+anonymwhite = lessthan3openings.drop("white_id" , axis=1)
+#print(anonymwhite)
+anonymblack = anonymwhite.drop("black_id" , axis=1)
+print(anonymblack)
 
-lessthan3openings.to_csv('P:\Data Preparation Pandas\Data-preparariton-with-pandas\Data\games_cleaned.csv', index=False)
+anonymblack.to_csv('P:\Data Preparation Pandas\Data-preparariton-with-pandas\Data\games_cleaned.csv', index=False)
 
